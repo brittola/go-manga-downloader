@@ -1,6 +1,7 @@
 package services
 
 import (
+	"errors"
 	"fmt"
 	"image"
 	"image/jpeg"
@@ -30,6 +31,10 @@ func downloadImagesFromUrl(pageURL string, targetDir string) error {
 			imageURLs = append(imageURLs, e.Request.AbsoluteURL(imgURL))
 		}
 	})
+
+	if len(imageURLs) == 0 {
+		return errors.New("Chapter not found")
+	}
 
 	c.Visit(pageURL)
 

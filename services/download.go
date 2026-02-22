@@ -8,7 +8,7 @@ import (
 )
 
 func DownloadManga(manga string, chapter int) (error, string) {
-	chapterDir := filepath.Join("downloads", manga, fmt.Sprintf("%d", chapter))
+	chapterDir := filepath.Join("downloads", manga)
 	pdfPath := filepath.Join(chapterDir, fmt.Sprintf("%s-%d.pdf", manga, chapter))
 
 	if _, err := os.Stat(pdfPath); err == nil {
