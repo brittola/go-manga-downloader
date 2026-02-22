@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"manga-downloader/models"
 	"manga-downloader/services"
 	"manga-downloader/utils"
@@ -26,8 +25,6 @@ func DownloadManga(c fiber.Ctx) error {
 			"status": "error",
 		})
 	}
-
-	fmt.Println(pdfPath)
 
 	return c.SendFile(pdfPath)
 }

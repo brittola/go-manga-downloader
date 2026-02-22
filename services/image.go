@@ -20,8 +20,13 @@ func downloadImagesFromUrl(pageURL string, targetDir string) error {
 
 	var imageURLs []string
 	c.OnHTML("img.wp-manga-chapter-img", func(e *colly.HTMLElement) {
-		imgURL := e.Attr("src")
-		if imgURL != "" {
+		imgURL := e.Attr("data-src")
+
+		if imgURL == "" {
+			imgURL = e.Attr("src")
+		}
+
+		if imgURL != "" && !strings.HasPrefix(imgURL, "data:image") {
 			imageURLs = append(imageURLs, e.Request.AbsoluteURL(imgURL))
 		}
 	})
